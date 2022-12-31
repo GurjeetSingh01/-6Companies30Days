@@ -1,0 +1,21 @@
+150. Evaluate Reverse Polish Notation
+
+
+CODE:
+class Solution {
+   public int evalRPN(String[] tokens) {
+        Deque<Integer> nums = new ArrayDeque<>();
+        
+        for (String s : tokens) {
+            if (s.equals("+"))       nums.push(nums.pop() + nums.pop());
+            else if (s.equals("-"))  nums.push(- nums.pop() + nums.pop());
+            else if (s.equals("*"))  nums.push(nums.pop() * nums.pop());
+            else if (s.equals("/")) {
+                int b = nums.pop(), a = nums.pop();
+                nums.push(a/b);
+            } else  nums.push(Integer.valueOf(s));
+        }
+        
+        return nums.pop();
+    }
+}
