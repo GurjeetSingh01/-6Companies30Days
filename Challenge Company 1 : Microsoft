@@ -80,3 +80,26 @@ class Solution {
         return bull+"A"+cow+"B";
     }
 }
+
+
+
+396. Rotate Function
+class Solution {
+    int[] nums;
+    
+    public int getFunctionValue(int start) {
+        int ans = 0,  n = nums.length;
+        for (int i = 0; i < n; i++) {
+            ans += nums[(start+i)%n]*i;
+        }
+        return ans;
+    }
+    
+    public int maxRotateFunction(int[] ns) {
+       int max = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            max = Math.max(max, getFunction(nums, i));
+        }
+        return max;
+    }
+}
