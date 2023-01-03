@@ -87,29 +87,33 @@ class Solution {
 
 CODE:: 
 class Solution {
-    int[] nums;
+public int maxRotateFunction(int[] nums) {
+    int s=0;int maxs=Integer.MIN_VALUE; int prevs=0;
     
-    public int getFunctionValue(int start) {
-        int ans = 0,  n = nums.length;
-        for (int i = 0; i < n; i++) {
-            ans += nums[(start+i)%n]*i;
-        }
-        return ans;
+    for(int i: nums) s+=i;
+    
+    
+    for(int i=0;i<nums.length;i++)
+    {
+        prevs+=i*nums[i];//System.out.println(prevs);
+    }
+    for(int i=nums.length-1; i>=0; i--)
+    {
+        int currs=s+prevs-nums[i]*(nums.length);
+        //System.out.println(currs);
+        maxs=Math.max(currs, maxs);
+        prevs=currs;
     }
     
-    public int maxRotateFunction(int[] ns) {
-       int max = Integer.MIN_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            max = Math.max(max, getFunction(nums, i));
-        }
-        return max;
-    }
-}
+    return maxs;
+    
+}}
 
 
 
 368. Largest Divisible Subset
 
+CODE::
 class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
        int[] dp=new int[nums.length];
