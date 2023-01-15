@@ -250,3 +250,6 @@ public boolean canFinish(int numCourses, int[][] prerequisites) {
     return numCourses==0;
 }
 }
+
+
+2467. Most Profitable Path in a Tree
