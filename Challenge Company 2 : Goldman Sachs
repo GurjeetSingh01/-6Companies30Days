@@ -59,3 +59,17 @@ class Solution {
         return ((p1[0]-p2[0])*(p1[0]-p2[0])) + ((p1[1]-p2[1])*(p1[1]-p2[1]));
     }
 }
+
+
+172. Factorial Trailing Zeroes
+class Solution {
+    public int trailingZeroes(int n) {
+        int c2=0,c5=0;
+        while(n>=5)
+        {
+            c5+=n/5;
+            n=n/5;
+        }
+        return c5;
+    }
+}
