@@ -358,3 +358,57 @@ System.out.println(score);
 
     }
 }
+
+
+2426. Number of Pairs Satisfying Inequality
+class Solution {
+    public long numberOfPairs(int[] nums1, int[] nums2, int difference) {
+        int l = nums1.length;
+        
+        int[] diff = new int[(int)l];
+        
+        for(int i = 0; i < l; i++){
+            diff[i] = nums1[i]-nums2[i];
+        }
+        
+        List<Integer> list = new ArrayList<>();
+        
+        long res = 0;
+        
+        for(int i = l-1; i >= 0; i--){
+            int val = diff[i]-difference;
+            
+            res += list.size()-findIdx(list, val);
+            
+			// Insert element to list
+            int index = Collections.binarySearch(list, diff[i]);
+            if (index < 0) {
+                index = -index - 1;
+            }
+            list.add(index, diff[i]);
+        }
+        
+        return res;
+    }
+    
+    private int findIdx(List<Integer> list, int v){
+        int begin = 0;
+        int end = list.size()-1;
+        
+        int res = list.size();
+        
+        while(begin <= end){
+            int mid = begin + (end-begin)/2;
+            
+            if(list.get(mid) < v){
+                begin = mid+1;
+            }
+            else{
+                res = mid;
+                end = mid-1;
+            }
+        }
+        
+        return res;
+    }
+}
